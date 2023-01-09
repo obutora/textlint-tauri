@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
@@ -13,18 +13,24 @@ import ToolbarPlugin from "../editor/plugins/toolbar";
 import axios from "axios";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+
+  const [lineNum, setLineNum] = useState("1");
+
+  const numRef = useRef(null);
+  const editorRef = useRef(null);
+
+  useEffect(() => {
+    editorRef.current.addEventListener("scroll", () => {
+      numRef.current.scrollTop = editorRef.current.scrollTop;
+    });
+  }, []);
 
   return (
     <div className="container">
-      <h1>Welcome to Tauri!</h1>
+      <h1 className="text-4xl font-bold">Welcome to Tauri!</h1>
       <button
         onClick={async () => {
-          // const res = await fetch("http://localhost:1420/api/lint");
-          // const result = await res.json();
-          // console.log(result);
-
           const res = await axios.post("http://localhost:1420/api/lint", {
             inputText: `食べれる\nイカれる\nお寿司たべれる\n彼処に向かうの`,
           });
@@ -37,7 +43,7 @@ function App() {
       <u>underline</u>
 
       <div>
-        <LexicalComposer initialConfig={editorConfig}>
+        {/* <LexicalComposer initialConfig={editorConfig}>
           <div className="editor-container">
             <ToolbarPlugin />
             <div className="editor-inner">
@@ -50,10 +56,30 @@ function App() {
               <HistoryPlugin />
             </div>
           </div>
-        </LexicalComposer>
+        </LexicalComposer> */}
       </div>
 
-      <p>Click on the Tauri, Next, and React logos to learn more.</p>
+      <div className="relative mx-auto h-96 w-9/12">
+        <textarea
+          className="h-full w-full resize-none rounded-md p-4 pl-16 pb-4 outline-1 outline-indigo-500 focus:border-indigo-400"
+          wrap="off"
+          ref={editorRef}
+          onChange={(e) => {
+            const lines = e.currentTarget.value.split(/\n/).length;
+            const lineNumArray = Array.from(
+              Array(lines),
+              (_, index) => index + 1 + `\n`
+            );
+            setLineNum(lineNumArray.join(""));
+          }}
+        ></textarea>
+        <textarea
+          className="absolute top-0 left-0 h-[100%] w-12 resize-none overflow-hidden rounded-l-md bg-indigo-50 p-4 pl-0 pb-4 text-right font-mono font-semibold text-neutral-500 outline-none"
+          contentEditable={false}
+          ref={numRef}
+          value={lineNum}
+        ></textarea>
+      </div>
 
       <div className="row">
         <div>
@@ -64,8 +90,6 @@ function App() {
           />
         </div>
       </div>
-
-      <p>{greetMsg}</p>
     </div>
   );
 }
