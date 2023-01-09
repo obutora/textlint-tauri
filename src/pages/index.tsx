@@ -1,15 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import editorConfig from "../editor/editorconfig";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { $getRoot, $getSelection } from "lexical";
-import ToolbarPlugin from "../editor/plugins/toolbar";
 import axios from "axios";
 import LintResult from "../interface/LintResult";
 
@@ -28,38 +18,9 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="text-4xl font-bold">Welcome to Tauri!</h1>
-      <button
-        onClick={async () => {
-          const res = await axios.post("http://localhost:1420/api/lint", {
-            inputText: `食べれる\nイカれる\nお寿司たべれる\n彼処に向かうの`,
-          });
-          console.log(res.data);
-        }}
-      >
-        post
-      </button>
+      <h1 className="text-7xl font-bold">textLintaro</h1>
 
-      <u>underline</u>
-
-      <div>
-        {/* <LexicalComposer initialConfig={editorConfig}>
-          <div className="editor-container">
-            <ToolbarPlugin />
-            <div className="editor-inner">
-              <RichTextPlugin
-                contentEditable={<ContentEditable className="editor-input" />}
-                placeholder={<Placeholder />}
-                ErrorBoundary={LexicalErrorBoundary}
-              />
-              <OnChangePlugin onChange={onChange} />
-              <HistoryPlugin />
-            </div>
-          </div>
-        </LexicalComposer> */}
-      </div>
-
-      <div className="relative mx-auto h-96 w-full">
+      <div className="relative mx-auto mt-12 h-96 w-full">
         <textarea
           className="col-span-9 h-full w-full resize-none rounded-md p-4 pl-16 pb-4 outline-1 outline-indigo-500 focus:border-indigo-400"
           wrap="off"
@@ -114,29 +75,6 @@ function App() {
       </div>
     </div>
   );
-}
-
-function Placeholder() {
-  return <div className="editor-placeholder">Enter some plain text...</div>;
-}
-
-async function onChange(editorState) {
-  editorState.read(async () => {
-    // Read the contents of the EditorState here.
-    const root = $getRoot();
-    // const selection = $getSelection();
-
-    // console.log(root, selection);
-    console.log(root.__cachedText);
-
-    const res = await axios.post("http://localhost:1420/api/lint", {
-      inputText: root.__cachedText,
-    });
-    console.log(res.data);
-  });
-
-  const json = editorState.toJSON();
-  console.log(json.root.children);
 }
 
 export default App;
