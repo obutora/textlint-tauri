@@ -3,6 +3,8 @@ import Image from "next/image";
 import axios from "axios";
 import LintResult from "../interface/LintResult";
 
+import { invoke } from "@tauri-apps/api/tauri";
+
 function App() {
   const [lintResult, setLintResult] = useState<LintResult[]>([]);
   const [lineNum, setLineNum] = useState("1");
@@ -16,11 +18,23 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    invoke("run_server").then(console.log).catch(console.error);
+  }, []);
+
   return (
     <div className="container">
       <h1 className="text-7xl font-bold">textLintaro</h1>
 
-      <div className="relative mx-auto mt-12 h-96 w-full">
+      {/* <button
+        onClick={async () => {
+          invoke("run_server").then(console.log).catch(console.error);
+        }}
+      >
+        post
+      </button> */}
+
+      <div className="relative mx-auto mt-8 h-96 w-full">
         <textarea
           className="col-span-9 h-full w-full resize-none rounded-md p-4 pl-16 pb-4 outline-1 outline-indigo-500 focus:border-indigo-400"
           wrap="off"
@@ -33,14 +47,18 @@ function App() {
             );
             setLineNum(lineNumArray.join(""));
 
-            const res = await axios.post("http://localhost:1420/api/lint", {
-              inputText: e.currentTarget.value,
+            // const res = await axios.post("http://localhost:1420/api/lint", {
+            //   inputText: e.currentTarget.value,
+            // });
+            const res = await axios.post("http://localhost:4237/", {
+              lint: e.currentTarget.value,
             });
 
-            const result = res.data.text as LintResult[];
-            setLintResult(result);
+            console.log(res.data);
 
-            console.log(result);
+            const result = res.data as LintResult[];
+            // console.log(result);
+            setLintResult(result);
           }}
         ></textarea>
         <textarea
@@ -48,29 +66,35 @@ function App() {
           contentEditable={false}
           ref={numRef}
           value={lineNum}
+          // defaultValue={lineNum}
+          onChange={() => {}}
         ></textarea>
 
         <div className="lint-card grid w-full grid-cols-3 gap-4">
-          {lintResult.map((lint, index) => {
-            return (
-              <div
-                key={
-                  lint.column.toString() +
-                  lint.index.toString() +
-                  index.toString()
-                }
-                className={
-                  "flex items-center rounded-lg border border-indigo-200 bg-white shadow-md shadow-indigo-50"
-                }
-              >
-                <div className="mb-2 p-2">
-                  <p className="mb-1 rounded-sm bg-indigo-50 p-1 text-sm text-indigo-700">{`${lint.line}行目`}</p>
-                  <p className="rounded-sm bg-indigo-50 p-1 text-sm text-indigo-700">{`${lint.index}-${lint.column}文字目`}</p>
+          {lintResult != undefined ? (
+            lintResult.map((lint, index) => {
+              return (
+                <div
+                  key={
+                    lint.column.toString() +
+                    lint.index.toString() +
+                    index.toString()
+                  }
+                  className={
+                    "flex items-center rounded-lg border border-indigo-200 bg-white shadow-md shadow-indigo-50"
+                  }
+                >
+                  <div className="mb-2 p-2">
+                    <p className="mb-1 rounded-sm bg-indigo-50 p-1 text-sm text-indigo-700">{`${lint.line}行目`}</p>
+                    <p className="rounded-sm bg-indigo-50 p-1 text-sm text-indigo-700">{`${lint.index}-${lint.column}文字目`}</p>
+                  </div>
+                  <p className="ml-2 text-sm">{lint.message}</p>
                 </div>
-                <p className="ml-2 text-sm">{lint.message}</p>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

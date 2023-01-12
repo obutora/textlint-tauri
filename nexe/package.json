@@ -1,0 +1,21 @@
+{
+  "name": "textlint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.mjs --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "textlint": "^12.5.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "textlint-rule-no-dropping-the-ra": "^3.0.0",
+    "textlint-rule-preset-smarthr": "^1.17.1"
+  }
+}
