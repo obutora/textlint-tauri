@@ -11,17 +11,25 @@ fn greet(name: &str) -> String {
 
 #[tauri::command]
 fn run_server() -> String {
-    std::process::Command::new("../nexe/textlint.exe")
-        // .spawn()
-        .spawn()
-        .expect("failed to execute process");
+    let path = std::fs::canonicalize("../nexe").unwrap();
 
-    // if process. {
-    //     "textlint server is runnning".to_string()
-    // } else {
-    //     "failed server".to_string()
-    // }
-    "textlint server is runnning".to_string()
+    // current dir を変更しないとサーバーがリソース読み込みに失敗する
+    std::env::set_current_dir(path).unwrap();
+
+    println!("current dir: {:?}", std::env::current_dir().unwrap());
+
+    let process = std::process::Command::new("./textlint.exe").spawn();
+
+    match process {
+        Ok(_process) => {
+            println!("process is running");
+            return "textlint server is runnning".to_string();
+        }
+        Err(e) => {
+            println!("failed to execute process: {}", e);
+            return "server error".to_string();
+        }
+    }
 }
 
 fn main() {
