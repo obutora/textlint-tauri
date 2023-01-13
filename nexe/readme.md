@@ -1,1 +1,1 @@
-nexe index.mjs -b --output textlint.exe --output textlint.exe
+nexe index.mjs -b --output textlint.exe

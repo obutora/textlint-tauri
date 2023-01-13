@@ -1,35 +1,70 @@
 {
-  "filters": {},
+  "filters": { },
   "rules": {
-    "no-dropping-the-ra": true,
+    "prh": {
+      "rulePaths": [
+        "./dict/prh.yml",
+        "./dict/prh_cho_on.yml",
+        "./dict/prh_corporation.yml",
+        "./dict/prh_duplicate.yml",
+        "./dict/prh_idiom.yml",
+        "./dict/prh_open_close.yml",
+        "./dict/prh_redundancy.yml",
+        "./dict/prh_web_technology.yml",
+        "./dict/wed_db_press.yml"
+      ]
+    },
+    // 表記ゆれのチェック
+    "ja-no-orthographic-variants": true,
+      "no-doubled-joshi": {
+      "min_interval" : 1,
+        "strict": false,
+          "allow": ["も", "や", "か"],
+            "separatorChars": ["、", "。", "?", "!", "？", "！", "「", "」", "“", "”"]
+    },
+    "preset-jtf-style": {
+      "1.2.1.句点(。)と読点(、)": true,
+        "1.2.2.ピリオド(.)とカンマ(,)": true,
+          "2.1.8.算用数字": true,
+            "2.2.2.算用数字と漢数字の使い分け": true,
+              "3.1.1.全角文字と半角文字の間": true,
+                "3.1.2.全角文字どうし": true,
+                  // 「ICS MEDIAの校正ルール」では有効としていますが、以下の経緯でコメントアウトしています。
+                  //   - 「拡張機能のデフォルト設定」では、ルールを有効としていなかった。
+                  //   -  内容が「1.2.1.句点(。)と読点(、)」と重複している。
+                  // "4.1.3.ピリオド(.)、カンマ(,)": true,
+                  "4.3.2.大かっこ［］": true,
+                    "4.2.6.ハイフン(-)": true,
+                      "4.3.1.丸かっこ（）": true
+    },
     "preset-smarthr": {
       "prh-rules": true,
-      "ja-no-mixed-period": true,
-      "no-hankaku-kana": true,
-      "@textlint-rule/no-unmatched-pair": true,
-      "sentence-length": {
+        "ja-no-mixed-period": true,
+          "no-hankaku-kana": true,
+            "@textlint-rule/no-unmatched-pair": true,
+              "sentence-length": {
         "max": 120
       },
       "no-doubled-conjunctive-particle-ga": true,
-      "no-double-negative-ja": true,
-      "ja-no-abusage": true,
-      "ja-no-redundant-expression": true,
-      "no-mixed-zenkaku-and-hankaku-alphabet": true,
-      "ja-keishikimeishi": {
-        "detection_hou_kata": false,
-        "detection_ue": false
+        "no-double-negative-ja": true,
+          "ja-no-abusage": true,
+            "ja-no-redundant-expression": true,
+              "no-mixed-zenkaku-and-hankaku-alphabet": true,
+                "ja-keishikimeishi": {
+        "detection_hou_kata" : false,
+          "detection_ue" : false
       },
       "ja-hiragana-fukushi": true,
-      "ja-hiragana-hojodoushi": true,
-      "ja-hiragana-daimeishi": true,
-      "ja-no-space-around-parentheses": true,
-      "ja-no-space-between-full-width": true,
-      "ja-space-between-half-and-full-width": {
+        "ja-hiragana-hojodoushi": true,
+          "ja-hiragana-daimeishi": true,
+            "ja-no-space-around-parentheses": true,
+              "ja-no-space-between-full-width": true,
+                "ja-space-between-half-and-full-width": {
         "space": "never"
       },
       "ja-space-after-exclamation": true,
-      "ja-space-after-question": true,
-      "ja-space-around-code": false
+        "ja-space-after-question": true,
+          "ja-space-around-code": false
     }
   }
 }
