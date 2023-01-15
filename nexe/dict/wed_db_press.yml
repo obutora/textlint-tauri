@@ -1075,14 +1075,14 @@ rules:
     expected: はじめとする
   - pattern: 始めとした
     expected: はじめとした
-  - pattern: はじめて
-    expected: 初めて
-  - pattern: はじめた
-    expected: 始めた
-  - pattern: はじま
-    expected: 始ま
-  - pattern: はじめ
-    expected: 始め
+  # - pattern: はじめて
+  #   expected: 初めて
+  # - pattern: はじめた
+  #   expected: 始めた
+  # - pattern: はじま
+  #   expected: 始ま
+  # - pattern: はじめ
+  #   expected: 始め
   - pattern: かたまり
     expected: 塊
   - pattern: やりかた

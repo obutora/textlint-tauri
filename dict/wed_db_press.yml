@@ -1075,8 +1075,6 @@ rules:
     expected: はじめとする
   - pattern: 始めとした
     expected: はじめとした
-  - pattern: はじめて
-    expected: 初めて
   - pattern: はじめた
     expected: 始めた
   - pattern: はじま
