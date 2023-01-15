@@ -8,4 +8,10 @@ export default interface LintResult {
   ruleId: string; //ルールID
   severaty: number; //エラーの重要度
   type: string;
+  fix?: fix;
+}
+
+interface fix {
+  range: number[];
+  text: string;
 }

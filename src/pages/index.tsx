@@ -4,6 +4,16 @@ import axios from "axios";
 import LintResult from "../interface/LintResult";
 
 import { invoke } from "@tauri-apps/api/tauri";
+import { Tooltip } from "@nextui-org/react";
+import {
+  getHitLintLineNumberList,
+  getHitLintResultByLineNum,
+} from "../usecase/LintResultUsecase";
+import LintResultCard from "../component/LintResultCard";
+
+// const globalStyles = globalCss({
+//   fonts: { mono: "Inter" },
+// });
 
 function App() {
   const [lintResult, setLintResult] = useState<LintResult[]>([]);
@@ -27,13 +37,8 @@ function App() {
     invoke("run_server").then(console.log).catch(console.error);
   }, []);
 
-  function getHitLintLineNumberList() {
-    const hitLintLineNumberList = lintResult.map((lint) => lint.line);
-    return hitLintLineNumberList;
-  }
-
   return (
-    <div className="container">
+    <div className="h-screen">
       {/* <button
         onClick={async () => {
           invoke("run_server").then(console.log).catch(console.error);
@@ -42,9 +47,13 @@ function App() {
         post
       </button> */}
 
-      <div className="relative mx-auto mt-8 h-96 w-full">
+      <div className="h-[40px] bg-indigo-50">{/* <ButtonNext /> */}</div>
+
+      <div className="relative mx-auto h-[calc(100%-40px)] w-full">
         <textarea
-          className="col-span-9 h-full w-full resize-none rounded-md p-4 pl-20 pb-4 outline-1 outline-indigo-500 focus:border-indigo-400"
+          className="col-span-9 h-full w-full resize-none rounded-md p-4 pl-20 pb-4 
+          font-sans text-lg tracking-wider text-neutral-600 antialiased
+           outline-1 outline-indigo-500 focus:border-indigo-400"
           wrap="off"
           ref={editorRef}
           onChange={async (e) => {
@@ -78,7 +87,7 @@ function App() {
           }}
         ></textarea>
         <div
-          className="absolute top-0 left-0 h-[100%] w-16 resize-none overflow-hidden rounded-l-md bg-indigo-50 p-4 text-right font-mono font-semibold text-neutral-500 outline-none"
+          className="absolute top-0 left-0 h-[100%] w-16 resize-none overflow-hidden rounded-l-md bg-indigo-50 p-4 text-right font-semibold text-neutral-500 outline-none"
           // contentEditable={false}
           ref={lineNumRef}
           // value={lineNum}
@@ -86,52 +95,58 @@ function App() {
         >
           {lineNum.map((num, _) => {
             return (
-              <div>
-                {getHitLintLineNumberList().includes(num) ? (
+              <div key={num.toString() + "linenum Selector"}>
+                {getHitLintLineNumberList(lintResult).includes(num) ? (
                   <div
                     key={num + "line number" + "hit"}
                     ref={numRefList.current[num]}
                     className={
-                      "font-bold text-teal-600 underline underline-offset-2"
+                      "relative my-0.5 h-[1.6rem] rounded-xl bg-indigo-200 py-0.5 pr-1 font-mono hover:bg-indigo-300"
                     }
                   >
-                    {num}
+                    <Tooltip
+                      content={
+                        <>
+                          {getHitLintResultByLineNum(lintResult, num).map(
+                            (lint, index) => (
+                              <LintResultCard
+                                key={
+                                  num.toString() +
+                                  index.toString() +
+                                  "lintResultCard"
+                                }
+                                lintResult={lint}
+                              />
+                            )
+                          )}
+                        </>
+                      }
+                      style={{
+                        margin: "0",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      placement="bottomStart"
+                    >
+                      <div className="text-sm font-bold text-indigo-700">
+                        {num}
+                      </div>
+                    </Tooltip>
                   </div>
                 ) : (
-                  <p key={num + "line number"} ref={numRefList.current[num]}>
+                  <p
+                    key={num + "line number"}
+                    ref={numRefList.current[num]}
+                    className={"text-center font-mono text-lg "}
+                  >
                     {num}
                   </p>
                 )}
               </div>
             );
           })}
-        </div>
-
-        <div className="lint-card grid w-full grid-cols-3 gap-4">
-          {lintResult != undefined ? (
-            lintResult.map((lint, index) => {
-              return (
-                <div
-                  key={
-                    lint.column.toString() +
-                    lint.index.toString() +
-                    index.toString()
-                  }
-                  className={
-                    "flex items-center rounded-lg border border-indigo-200 bg-white shadow-md shadow-indigo-50"
-                  }
-                >
-                  <div className="mb-2 p-2">
-                    <p className="mb-1 rounded-sm bg-indigo-50 p-1 text-sm text-indigo-700">{`${lint.line}行目`}</p>
-                    <p className="rounded-sm bg-indigo-50 p-1 text-sm text-indigo-700">{`${lint.index}-${lint.column}文字目`}</p>
-                  </div>
-                  <p className="ml-2 text-sm">{lint.message}</p>
-                </div>
-              );
-            })
-          ) : (
-            <></>
-          )}
         </div>
       </div>
     </div>
