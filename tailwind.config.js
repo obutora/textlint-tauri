@@ -8,7 +8,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-
         sans: ["Inter", "Noto Sans JP", "sans-serif"],
         mono: ["Inter", "monospace"],
       }

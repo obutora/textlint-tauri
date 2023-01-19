@@ -9,7 +9,7 @@ import { NextUIProvider } from "@nextui-org/react";
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </NextUIProvider>
   );
 }

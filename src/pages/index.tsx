@@ -1,5 +1,4 @@
 import { createRef, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import axios from "axios";
 import LintResult from "../interface/LintResult";
 
@@ -11,15 +10,10 @@ import {
 } from "../usecase/LintResultUsecase";
 import LintResultCard from "../component/LintResultCard";
 
-// const globalStyles = globalCss({
-//   fonts: { mono: "Inter" },
-// });
-
 function App() {
   const [lintResult, setLintResult] = useState<LintResult[]>([]);
   const [lineNum, setLineNum] = useState([1]);
 
-  // const numRef = useRef(null);
   const lineNumRef = useRef(null);
   const editorRef = useRef(null);
 
@@ -47,11 +41,13 @@ function App() {
         post
       </button> */}
 
-      <div className="h-[40px] bg-indigo-50">{/* <ButtonNext /> */}</div>
+      <div className="flex h-[36px] bg-indigo-50">
+        {/* <button onClick={async () => {}}>tetete</button> */}
+      </div>
 
-      <div className="relative mx-auto h-[calc(100%-40px)] w-full">
+      <div className="relative mx-auto h-[calc(100%-42px)] w-full">
         <textarea
-          className="col-span-9 h-full w-full resize-none rounded-md p-4 pl-20 pb-4 
+          className="col-span-9 h-full w-full resize-none rounded-md p-8 pl-20 pb-4 
           font-sans text-lg tracking-wider text-neutral-600 antialiased
            outline-1 outline-indigo-500 focus:border-indigo-400"
           wrap="off"
@@ -87,7 +83,7 @@ function App() {
           }}
         ></textarea>
         <div
-          className="absolute top-0 left-0 h-[100%] w-16 resize-none overflow-hidden rounded-l-md bg-indigo-50 p-4 text-right font-semibold text-neutral-500 outline-none"
+          className="absolute top-0 left-0 h-[100%] w-16 resize-none overflow-hidden rounded-l-md bg-indigo-50 p-4 pt-8 text-right font-semibold text-neutral-500 outline-none"
           // contentEditable={false}
           ref={lineNumRef}
           // value={lineNum}
@@ -95,13 +91,16 @@ function App() {
         >
           {lineNum.map((num, _) => {
             return (
-              <div key={num.toString() + "linenum Selector"}>
+              <div
+                key={num.toString() + "linenum Selector"}
+                className={"flex h-[28px] w-auto items-center justify-center"}
+              >
                 {getHitLintLineNumberList(lintResult).includes(num) ? (
                   <div
                     key={num + "line number" + "hit"}
                     ref={numRefList.current[num]}
                     className={
-                      "relative my-0.5 h-[1.6rem] rounded-xl bg-indigo-200 py-0.5 pr-1 font-mono hover:bg-indigo-300"
+                      "relative rounded-xl bg-indigo-200 pr-1 font-mono hover:bg-indigo-300"
                     }
                   >
                     <Tooltip
@@ -127,12 +126,14 @@ function App() {
                         top: "50%",
                         left: "50%",
                         transform: "translate(-50%, -50%)",
+                        fontSize: "1.125rem",
+                        lineHeight: "1.75rem",
                       }}
                       placement="bottomStart"
                     >
-                      <div className="text-sm font-bold text-indigo-700">
+                      <p className="my-2 rounded-xl bg-indigo-200 px-1 py-0.5 text-base font-bold text-indigo-700">
                         {num}
-                      </div>
+                      </p>
                     </Tooltip>
                   </div>
                 ) : (
