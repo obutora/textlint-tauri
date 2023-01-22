@@ -4,7 +4,6 @@
     "prh": {
       "rulePaths": [
         "./dict/prh.yml",
-        "./dict/prh_cho_on.yml",
         "./dict/prh_corporation.yml",
         "./dict/prh_duplicate.yml",
         "./dict/prh_idiom.yml",
@@ -26,15 +25,30 @@
     "no-doubled-joshi": {
       "min_interval": 1,
       "strict": false,
-      "allow": ["も", "や", "か"],
-      "separatorChars": ["、", "。", "?", "!", "？", "！", "「", "」", "“", "”"]
+      "allow": [
+        "も",
+        "や",
+        "か"
+      ],
+      "separatorChars": [
+        "、",
+        "。",
+        "?",
+        "!",
+        "？",
+        "！",
+        "「",
+        "」",
+        "“",
+        "”"
+      ]
     },
     "preset-jtf-style": {
       "1.2.1.句点(。)と読点(、)": true,
       "1.2.2.ピリオド(.)とカンマ(,)": true,
       "2.1.8.算用数字": true,
       "2.2.2.算用数字と漢数字の使い分け": true,
-      "3.1.1.全角文字と半角文字の間": true,
+      "3.1.1.全角文字と半角文字の間": false, //
       "3.1.2.全角文字どうし": true,
       // 「ICS MEDIAの校正ルール」では有効としていますが、以下の経緯でコメントアウトしています。
       //   - 「拡張機能のデフォルト設定」では、ルールを有効としていなかった。
@@ -67,8 +81,9 @@
       "ja-no-space-around-parentheses": true,
       "ja-no-space-between-full-width": true,
       "ja-space-between-half-and-full-width": {
-        "space": "never"
+        "space": "always"
       },
+      // "ja-space-between-half-and-full-width": false,
       "ja-space-after-exclamation": true,
       "ja-space-after-question": true,
       "ja-space-around-code": false
@@ -93,11 +108,12 @@
       // 例) カクカク、ドキドキ、ビリビリ
       // https://ja.wikipedia.org/wiki/%E6%93%AC%E5%A3%B0%E8%AA%9E
       "allowOnomatopee": true,
-
       // 許可する単語
       // RegExp-like Stringを使用可能
       // あるあるは慣用表現として許可する
-      "allow": ["ある"]
+      "allow": [
+        "ある"
+      ]
     },
     "max-kanji-continuous-len": {
       // 連続できる漢字の文字数
@@ -105,7 +121,9 @@
       // If {current} > max(5), report Error.
       "max": 6,
       // "倍精度浮動小数点数"という単語は例外として無視します
-      "allow": ["倍精度浮動小数点数"]
+      "allow": [
+        "倍精度浮動小数点数"
+      ]
     }
   }
 }

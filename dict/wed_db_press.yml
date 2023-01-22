@@ -631,8 +631,8 @@ rules:
     expected: ときおり
   - pattern: 時々
     expected: ときどき
-  - pattern: とくに
-    expected: 特に
+  # - pattern: とくに
+  #   expected: 特に
   - pattern:
       - 何処
       - 何所
@@ -1075,12 +1075,14 @@ rules:
     expected: はじめとする
   - pattern: 始めとした
     expected: はじめとした
-  - pattern: はじめた
-    expected: 始めた
-  - pattern: はじま
-    expected: 始ま
-  - pattern: はじめ
-    expected: 始め
+  # - pattern: はじめて
+  #   expected: 初めて
+  # - pattern: はじめた
+  #   expected: 始めた
+  # - pattern: はじま
+  #   expected: 始ま
+  # - pattern: はじめ
+  #   expected: 始め
   - pattern: かたまり
     expected: 塊
   - pattern: やりかた
@@ -1333,8 +1335,8 @@ rules:
     expected: 断$1
   - pattern: 内臓
     expected: 内蔵
-  - pattern: /なか([かでに])/
-    expected: 中$1
+  # - pattern: /なか([かでに])/
+  #   expected: 中$1
   - pattern: /なら(ば(?!、)|[びぶべぼん])/
     expected: 並$1
     specs:
@@ -1709,20 +1711,20 @@ rules:
         to: アプリケーション
   - expected: アンダースコア
     pattern: /アンダーバー/
-  - expected: イシュア
-    pattern: /イシュアー/
-  - expected: イディオム
-    pattern: /イデオム/
-  - expected: インジケータ
-    pattern: /インジケーター|インジゲーター|インジゲータ/
-  - expected: インスタンス
-    pattern: /インスンタンス/
-  - expected: インストーラ
-    pattern: /インストーラー/
-  - expected: インスパイア
-    pattern: /インスパイヤ/
-  - expected: インスペクタ
-    pattern: /インスペクター/
+  # - expected: イシュア
+  #   pattern: /イシュアー/
+  # - expected: イディオム
+  #   pattern: /イデオム/
+  # - expected: インジケータ
+  #   pattern: /インジケーター|インジゲーター|インジゲータ/
+  # - expected: インスタンス
+  #   pattern: /インスンタンス/
+  # - expected: インストーラ
+  #   pattern: /インストーラー/
+  # - expected: インスパイア
+  #   pattern: /インスパイヤ/
+  # - expected: インスペクタ
+  #   pattern: /インスペクター/
   - expected: インタフェース
     pattern: /インタフェイス|インターフェイス|インターフェース|インターフェィス/
   - expected: インタプリタ
@@ -1742,43 +1744,43 @@ rules:
     spec:
       - from: ハードウエア
         to: ハードウェア
-  - expected: エディタ
-    pattern: /エディター/
-  - expected: エミッタ
-    pattern: /エミッター/
-  - expected: エンコーダ
-    pattern: /エンコーダー/
-  - expected: デコーダ
-    pattern: /デコーダー/
-  - expected: エミュレータ
-    pattern: /エミュレーター/
+  # - expected: エディタ
+  #   pattern: /エディター/
+  # - expected: エミッタ
+  #   pattern: /エミッター/
+  # - expected: エンコーダ
+  #   pattern: /エンコーダー/
+  # - expected: デコーダ
+  #   pattern: /デコーダー/
+  # - expected: エミュレータ
+  #   pattern: /エミュレーター/
   - expected: エンティティ
     pattern:
       - Entity
       - entity
       - エンティティー
-  - expected: エントリ
-    pattern: /エントリー/
-  - expected: オブザーバ
-    pattern: /オブザーバー|オブサーバー|オブサーバ/
+  # - expected: エントリ
+  #   pattern: /エントリー/
+  # - expected: オブザーバ
+  #   pattern: /オブザーバー|オブサーバー|オブサーバ/
   - expected: オプション
     pattern: /オブション/
   - expected: オン／オフ
     pattern: /ON\/OFF|ON／OFF|オン・オフ|オン\/オフ/
-  - expected: カウンタ
-    pattern: /カウンター/
+  # - expected: カウンタ
+  #   pattern: /カウンター/
   - expected: カバレッジ
     pattern: /カバリッジ|カバレージ/
   - expected: ガベージ
     pattern: /ガベージ・|ガーベジ|ガーベジ・|ガーベージ|ガーベージ・|ガーベッジ|ガーベッジ・|ガベッジ/
-  - expected: カテゴリ
-    pattern: /カテゴリー/
-  - expected: カラムナ
-    pattern: /カラムナー/
+  # - expected: カテゴリ
+  #   pattern: /カテゴリー/
+  # - expected: カラムナ
+  #   pattern: /カラムナー/
   - expected: カンマ
     pattern: /コンマ/
-  - expected: キャラクタ
-    pattern: /キャラクター/
+  # - expected: キャラクタ
+  #   pattern: /キャラクター/
   - expected: キャッシュ
     pattern:
       - /cache(?![^a-zA-Z\-])/
@@ -1793,57 +1795,57 @@ rules:
     pattern: /クエリー/
   - expected: クオート
     pattern: /クォート|クオーテーション|クォーテーション/
-  - expected: クオリティ
-    pattern: /クオリティー|クォリティ|クォリティー/
-  - expected: クライアント／サーバ
-    pattern:
-      - クライアント/サーバー
-      - クライアント/サーバ
-      - クライアント・サーバー
-      - クライアント・サーバ
-      - クライアントサーバー
-      - クライアントサーバ
-    specs:
-      - from: クライアント/サーバー
-        to: クライアント／サーバ
-  - expected: クラスタ
-    pattern: /クラスター/
+  # - expected: クオリティ
+  #   pattern: /クオリティー|クォリティ|クォリティー/
+  # - expected: クライアント／サーバ
+  #   pattern:
+  #     - クライアント/サーバー
+  #     - クライアント/サーバ
+  #     - クライアント・サーバー
+  #     - クライアント・サーバ
+  #     - クライアントサーバー
+  #     - クライアントサーバ
+  #   specs:
+  #     - from: クライアント/サーバー
+  #       to: クライアント／サーバ
+  # - expected: クラスタ
+  #   pattern: /クラスター/
   - expected: グラウンド
     pattern: /グランド/
   - expected: グリッド
     pattern: /\bGrid\b/
-  - expected: クロージャ
-    pattern: /クロージャー/
-  - expected: クローラ
-    pattern: /クローラー/
-  - expected: ゲッタ
-    pattern: /ゲッター/
-  - expected: コピー&ペースト
-    pattern:
-      - コピー＆ペースト
-      - コピペ
-      - コピーアンドペースト
-      - コピーペースト
+  # - expected: クロージャ
+  #   pattern: /クロージャー/
+  # - expected: クローラ
+  #   pattern: /クローラー/
+  # - expected: ゲッタ
+  #   pattern: /ゲッター/
+  # - expected: コピー&ペースト
+  #   pattern:
+  #     - コピー＆ペースト
+  #     - コピペ
+  #     - コピーアンドペースト
+  #     - コピーペースト
   - expected: コミュニ
     pattern: /コミニュ/
   - expected: アンコメント
     pattern: /コメントイン/
-  - expected: コンストラクタ
-    pattern: /コンストラクター/
+  # - expected: コンストラクタ
+  #   pattern: /コンストラクター/
   - expected: コンテキスト
     pattern: /コンテクスト/
   - expected: コンテントプロバイダ
     pattern: /\bContent provider\b/
-  - expected: コンテナ
-    pattern: /コンテナー/
-  - expected: コンピュータ
-    pattern: /コンピューター/
+  # - expected: コンテナ
+  #   pattern: /コンテナー/
+  # - expected: コンピュータ
+  #   pattern: /コンピューター/
   - expected: コンポーネント
     pattern: /コンポネント/
-  - expected: コントローラ
-    pattern: /コントローラー/
-  - expected: サーバ
-    pattern: /サーバー/
+  # - expected: コントローラ
+  #   pattern: /コントローラー/
+  # - expected: サーバ
+  #   pattern: /サーバー/
   - expected: サーブレット
     pattern:
       - Servlet
@@ -1857,24 +1859,24 @@ rules:
     pattern: /\bSan Francisco\b/
   - expected: シェア
     pattern: /シェア率/
-  - expected: ジェスチャ
-    pattern: /ジェスチャー/
-  - expected: ジェネレータ
-    pattern: /ジェネレーター/
+  # - expected: ジェスチャ
+  #   pattern: /ジェスチャー/
+  # - expected: ジェネレータ
+  #   pattern: /ジェネレーター/
   - expected: ジェネレーティブ
     pattern: /ジェネレイティブ/
   - expected: ジョブズ
     pattern: /ジョブス/
   - expected: ジオタグ
     pattern: /\bGeotag\b|\bgeotag\b/
-  - expected: シグネチャ
-    pattern: /シグネチャー/
-  - expected: シミュレー
-    pattern: /シュミレー/
-  - expected: シンクロナイザ
-    pattern: /シンクロナイザー/
-  - expected: スカラ
-    pattern: /スカラー/
+  # - expected: シグネチャ
+  #   pattern: /シグネチャー/
+  # - expected: シミュレー
+  #   pattern: /シュミレー/
+  # - expected: シンクロナイザ
+  #   pattern: /シンクロナイザー/
+  # - expected: スカラ
+  #   pattern: /スカラー/
   - expected: スクラム
     pattern: /\bScrum\b/
   - expected: スタンドアローン
@@ -1887,16 +1889,16 @@ rules:
     pattern: /スマフォ|スマホ/
   - expected: スムーズ
     pattern: /スムース/
-  - expected: セキュリティ
-    pattern: /セキュリティー/
+  # - expected: セキュリティ
+  #   pattern: /セキュリティー/
   - expected: セッション
     pattern: /\bsession\b|\bSession\b/
-  - expected: セッタ
-    pattern: /セッター/
-  - expected: セレクタ
-    pattern: /セレクター/
-  - expected: センサ
-    pattern: /センサー/
+  # - expected: セッタ
+  #   pattern: /セッター/
+  # - expected: セレクタ
+  #   pattern: /セレクター/
+  # - expected: センサ
+  #   pattern: /センサー/
   - expected: ソフトウェア
     pattern: /(日経)?ソフトウエア/
     regexpMustEmpty: $1
@@ -1928,8 +1930,8 @@ rules:
       - Table
   - expected: データサービス
     pattern: /\bData Services\b/
-  - expected: データ
-    pattern: /データー/
+  # - expected: データ
+  #   pattern: /データー/
   - expected: データセンター$1
     pattern: /データセンタ([^ー])/
   - expected: データ同期
@@ -1940,26 +1942,26 @@ rules:
     pattern: /ディザスタ・リカバリ/
   - expected: ディスク
     pattern: /\bDisk\b/
-  - expected: ディスパッチャ
-    pattern: /ディスパッチャー/
+  # - expected: ディスパッチャ
+  #   pattern: /ディスパッチャー/
   - expected: ディスプレイ
     pattern: /ディスプレー/
-  - expected: ディレクトリ
-    pattern: /ディレクトリー/
-  - expected: テクノロジ
-    pattern: /テクノロジー/
+  # - expected: ディレクトリ
+  #   pattern: /ディレクトリー/
+  # - expected: テクノロジ
+  #   pattern: /テクノロジー/
   - expected: デジタルカメラ
     pattern: /デジカメ/
   - expected: デバッグ
     pattern: /デバック/
-  - expected: デバッガ
-    pattern: /デバッガー/
+  # - expected: デバッガ
+  #   pattern: /デバッガー/
   - expected: デフォルト
     pattern: /既定|ディフォルト|デフォールト/
   - expected: デプロイ
     pattern: /デプロイメント/
-  - expected: デリバリ
-    pattern: /デリバリー/
+  # - expected: デリバリ
+  #   pattern: /デリバリー/
   - expected: ドキュメント
     pattern: /ドキュメンテーション/
   - expected: ドコモ
@@ -1972,18 +1974,18 @@ rules:
     pattern: /トリガー/
   - expected: ニューヨーク
     pattern: /\bNew York\b/
-  - expected: バイナリ
-    pattern: /バイナリー/
+  # - expected: バイナリ
+  #   pattern: /バイナリー/
   - expected: ハイパーリンク
     pattern: /ハイパー・リンク/
-  - expected: ハイパーバイザ
-    pattern: /ハイパーバイザー/
+  # - expected: ハイパーバイザ
+  #   pattern: /ハイパーバイザー/
   - expected: パーサ
     pattern: /パーサー|パーザー|パーザ/
   - expected: パーマリンク
     pattern: /\bPermalink\b|\bpermalink\b|\bpermanent link\b|パーマネントリンク/
-  - expected: バッファ
-    pattern: /バッファー/
+  # - expected: バッファ
+  #   pattern: /バッファー/
   - expected: パス
     pattern: /\bpath\b|\bPath\b/
   - expected: パターン
@@ -1994,12 +1996,12 @@ rules:
     pattern: /薔薇/
   - expected: バラエティ
     pattern: /バラエティー/
-  - expected: パラメータ
-    pattern: /パラメタ|パラメーター/
-  - expected: バランサ
-    pattern: /バランサー/
-  - expected: ハンドラ
-    pattern: /ハンドラー/
+  # - expected: パラメータ
+  #   pattern: /パラメタ|パラメーター/
+  # - expected: バランサ
+  #   pattern: /バランサー/
+  # - expected: ハンドラ
+  #   pattern: /ハンドラー/
   - expected: ビューア
     pattern: /ビューアー|ビューワー|ビューワ/
   - expected: ビルダ
@@ -2008,10 +2010,10 @@ rules:
     pattern: /ビルドイン/
   - expected: ヒット率
     pattern: /hit率/
-  - expected: ファイラ
-    pattern: /ファイラー/
-  - expected: ファクトリ
-    pattern: /ファクトリー/
+  # - expected: ファイラ
+  #   pattern: /ファイラー/
+  # - expected: ファクトリ
+  #   pattern: /ファクトリー/
   - expected: フィーチャーフォン
     pattern: /フィーチャフォン/
   - expected: ブラウザ
@@ -2019,8 +2021,8 @@ rules:
       - /Webブラウザー?/
       - /WEBブラウザー?/
       - ブラウザ
-  - expected: プライマリ
-    pattern: /プライマリー/
+  # - expected: プライマリ
+  #   pattern: /プライマリー/
   - expected: プラットフォーム
     pattern: /プラットホーム/
   - expected: ブレーク
@@ -2059,22 +2061,22 @@ rules:
         to: http://blog.example.com/
       - from: http://example.com/foo-blog/
         to: http://example.com/foo-blog/
-  - expected: プロシージャ
-    pattern: /プロシージャー/
+  # - expected: プロシージャ
+  #   pattern: /プロシージャー/
   - expected: ブロードキャストレシーバ
     pattern: /\bBroadcast receiver\b/
   - expected: プロバイダ
     pattern: /プロバイダー/
   - expected: ペアプログラミング$1
     pattern: /ペアプロ([^グ])/
-  - expected: ベンダー
-    pattern: /ベンダ(?!ー)/
-  - expected: ヘッダ
-    pattern: /ヘッダー|ヘッタ|ヘッター/
-  - expected: ベクタ
-    pattern: /ベクター/
-  - expected: ページャ
-    pattern: /ページャー/
+  # - expected: ベンダー
+  #   pattern: /ベンダ(?!ー)/
+  # - expected: ヘッダ
+  #   pattern: /ヘッダー|ヘッタ|ヘッター/
+  # - expected: ベクタ
+  #   pattern: /ベクター/
+  # - expected: ページャ
+  #   pattern: /ページャー/
   - expected: ポインタ
     pattern: /ポインター/
   - expected: ポッドキャスト
@@ -2140,8 +2142,8 @@ rules:
       - デグレード
       # デグレは英語圏では使わない by Jenkins川口さん
       - デグレ
-  - expected: リスナ
-    pattern: /リスナー/
+  # - expected: リスナ
+  #   pattern: /リスナー/
   - expected: リバースプロキシ
     pattern: /\bReverse Proxy\b/
   - expected: リファラ

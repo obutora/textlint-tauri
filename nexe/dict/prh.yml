@@ -19,14 +19,10 @@ imports:
   # 重言
   - ./prh_duplicate.yml
 
-  # 外来語カタカナ表記
-  - ./prh_cho_on.yml
-
   # 固有名詞
   - ./prh_corporation.yml
 
   # 技術用語
   - ./prh_web_technology.yml
-
 # ルールは以下を参照。
 # https://github.com/vvakame/prh/tree/master/misc

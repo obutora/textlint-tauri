@@ -1335,8 +1335,8 @@ rules:
     expected: 断$1
   - pattern: 内臓
     expected: 内蔵
-  - pattern: /なか([かでに])/
-    expected: 中$1
+  # - pattern: /なか([かでに])/
+  #   expected: 中$1
   - pattern: /なら(ば(?!、)|[びぶべぼん])/
     expected: 並$1
     specs:
