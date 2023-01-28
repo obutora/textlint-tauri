@@ -31,16 +31,24 @@ function App() {
     invoke("run_server").then(console.log).catch(console.error);
   }, []);
 
+  //lineNumを更新するカスタムフック
+  const useLineNum = (bodyText: string) => {
+    const lines = bodyText.split(/\n/).length;
+    const lineNumArray = Array.from(
+      Array(lines),
+      // (_, index) => index + 1 + `\n`
+      (_, index) => index + 1
+    );
+    // setLineNum(lineNumArray.join(""));
+    setLineNum(lineNumArray);
+
+    lineNumArray.forEach((num, index) => {
+      numRefList.current[index] = createRef();
+    });
+  };
+
   return (
     <div className="h-screen">
-      {/* <button
-        onClick={async () => {
-          invoke("run_server").then(console.log).catch(console.error);
-        }}
-      >
-        post
-      </button> */}
-
       <div className="flex h-[36px] bg-indigo-50">
         {/* <button onClick={async () => {}}>tetete</button> */}
       </div>
@@ -52,28 +60,18 @@ function App() {
            outline-1 outline-indigo-500 focus:border-indigo-400"
           wrap="off"
           ref={editorRef}
+          onChange={(e) => {
+            useLineNum(e.currentTarget.value);
+          }}
           onKeyDown={async (e) => {
             const key = e.key;
             // console.log(e.key);
 
+            const bodyText = editorRef.current.value;
+            // console.log(bodyText);
+
             // Enterキーが押されtときだけ処理
             if (key === "Enter") {
-              const bodyText = editorRef.current.value;
-              // console.log(bodyText);
-
-              const lines = bodyText.split(/\n/).length;
-              const lineNumArray = Array.from(
-                Array(lines),
-                // (_, index) => index + 1 + `\n`
-                (_, index) => index + 1
-              );
-              // setLineNum(lineNumArray.join(""));
-              setLineNum(lineNumArray);
-
-              lineNumArray.forEach((num, index) => {
-                numRefList.current[index] = createRef();
-              });
-
               const res = await axios.post("http://localhost:4237/", {
                 lint: e.currentTarget.value,
               });
