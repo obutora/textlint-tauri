@@ -83,7 +83,7 @@
       "ja-space-between-half-and-full-width": {
         "space": "always"
       },
-      // "ja-space-between-half-and-full-width": false,
+      "ja-space-between-half-and-full-width": false,
       "ja-space-after-exclamation": true,
       "ja-space-after-question": true,
       "ja-space-around-code": false
