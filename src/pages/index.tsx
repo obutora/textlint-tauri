@@ -52,36 +52,40 @@ function App() {
            outline-1 outline-indigo-500 focus:border-indigo-400"
           wrap="off"
           ref={editorRef}
-          onChange={async (e) => {
-            const lines = e.currentTarget.value.split(/\n/).length;
-            const lineNumArray = Array.from(
-              Array(lines),
-              // (_, index) => index + 1 + `\n`
-              (_, index) => index + 1
-            );
-            // setLineNum(lineNumArray.join(""));
-            setLineNum(lineNumArray);
+          onKeyDown={async (e) => {
+            const key = e.key;
+            // console.log(e.key);
 
-            lineNumArray.forEach((num, index) => {
-              numRefList.current[index] = createRef();
-            });
+            // Enterキーが押されtときだけ処理
+            if (key === "Enter") {
+              const bodyText = editorRef.current.value;
+              // console.log(bodyText);
 
-            //create ref
+              const lines = bodyText.split(/\n/).length;
+              const lineNumArray = Array.from(
+                Array(lines),
+                // (_, index) => index + 1 + `\n`
+                (_, index) => index + 1
+              );
+              // setLineNum(lineNumArray.join(""));
+              setLineNum(lineNumArray);
 
-            // const res = await axios.post("http://localhost:1420/api/lint", {
-            //   inputText: e.currentTarget.value,
-            // });
-            const res = await axios.post("http://localhost:4237/", {
-              lint: e.currentTarget.value,
-            });
+              lineNumArray.forEach((num, index) => {
+                numRefList.current[index] = createRef();
+              });
 
-            console.log(res.data);
+              const res = await axios.post("http://localhost:4237/", {
+                lint: e.currentTarget.value,
+              });
 
-            const result = res.data as LintResult[];
-            // console.log(result);
-            setLintResult(result);
+              // console.log(res.data);
+
+              const result = res.data as LintResult[];
+              // console.log(result);
+              setLintResult(result);
+            }
           }}
-        ></textarea>
+        />
         <div
           className="absolute top-0 left-0 h-[100%] w-16 resize-none overflow-hidden rounded-l-md bg-indigo-50 p-4 pt-8 text-right font-semibold text-neutral-500 outline-none"
           // contentEditable={false}
@@ -92,12 +96,12 @@ function App() {
           {lineNum.map((num, _) => {
             return (
               <div
-                key={num.toString() + "linenum Selector"}
+                key={`${num.toString()}linenum Selector`}
                 className={"flex h-[28px] w-auto items-center justify-center"}
               >
                 {getHitLintLineNumberList(lintResult).includes(num) ? (
                   <div
-                    key={num + "line number" + "hit"}
+                    key={`${num}line numberhit`}
                     ref={numRefList.current[num]}
                     className={
                       "relative rounded-xl bg-indigo-200 pr-1 font-mono hover:bg-indigo-300"
@@ -109,11 +113,7 @@ function App() {
                           {getHitLintResultByLineNum(lintResult, num).map(
                             (lint, index) => (
                               <LintResultCard
-                                key={
-                                  num.toString() +
-                                  index.toString() +
-                                  "lintResultCard"
-                                }
+                                key={`${num.toString()}${index.toString()}lintResultCard`}
                                 lintResult={lint}
                               />
                             )
@@ -138,7 +138,7 @@ function App() {
                   </div>
                 ) : (
                   <p
-                    key={num + "line number"}
+                    key={`${num}line number`}
                     ref={numRefList.current[num]}
                     className={"text-center font-mono text-lg "}
                   >
